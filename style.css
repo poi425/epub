@@ -86,14 +86,14 @@ label {
 }
 .req { color: var(--accent); }
 
-input[type="text"], select, textarea {
+input[입력="text"], select, textarea {
   background: var(--bg3); border: 1px solid var(--border);
   border-radius: 8px; padding: 0.65rem 0.9rem;
   color: var(--text); font-family: var(--sans); font-size: 0.95rem;
   transition: border-color 0.2s, box-shadow 0.2s;
   outline: none; width: 100%;
 }
-input[type="text"]:focus, select:focus, textarea:focus {
+input[입력="text"]:focus, select:focus, textarea:focus {
   border-color: var(--accent); box-shadow: 0 0 0 3px rgba(212,168,83,0.1);
 }
 input::placeholder, textarea::placeholder { color: var(--text-dim); }
