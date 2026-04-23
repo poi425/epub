@@ -47,6 +47,7 @@ header {
 
 /* Main */
 main { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+@media (max-width: 560px) { main { padding: 1.5rem 1.1rem 4rem; } }
 
 /* Card */
 .card {
@@ -122,17 +123,59 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
 
 .chapter-title-input {
   font-size: 1rem; font-weight: 500; margin-bottom: 0.75rem; width: 100%;
+  text-align: center;
 }
 .chapter-content {
   font-size: 0.9rem; line-height: 1.7; min-height: 120px; resize: vertical;
   font-family: var(--serif) !important;
+  text-align: justify;
 }
-.chapter-content::placeholder { font-family: var(--sans) !important; }
+.chapter-content::placeholder { font-family: var(--sans) !important; text-align: left; }
 
 .chapter-word-count {
   font-size: 0.75rem; color: var(--text-dim); text-align: right;
   margin-top: 0.4rem;
 }
+
+/* Cover Upload */
+.optional-label { font-size: 0.75rem; font-weight: 400; color: var(--text-dim); font-family: var(--sans); }
+
+.cover-upload-area {
+  border: 1.5px dashed var(--border); border-radius: 12px; overflow: hidden;
+  cursor: pointer; transition: border-color 0.2s;
+}
+.cover-upload-area:hover { border-color: var(--accent); }
+.cover-upload-area.drag-over { border-color: var(--accent); background: rgba(212,168,83,0.04); }
+
+.cover-placeholder {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.5rem; padding: 2.5rem 1.5rem; text-align: center;
+}
+.cover-placeholder-icon { font-size: 2.2rem; opacity: 0.5; }
+.cover-placeholder-text { color: var(--text-muted); font-size: 0.9rem; }
+.cover-placeholder-sub { color: var(--text-dim); font-size: 0.78rem; }
+
+.cover-preview-wrap {
+  position: relative; width: 100%; max-height: 420px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center; background: var(--bg3);
+}
+.cover-preview-wrap img {
+  max-width: 100%; max-height: 420px; object-fit: contain; display: block;
+}
+.cover-overlay {
+  position: absolute; inset: 0; background: rgba(0,0,0,0.55);
+  display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+  opacity: 0; transition: opacity 0.2s;
+}
+.cover-preview-wrap:hover .cover-overlay { opacity: 1; }
+.cover-change-btn, .cover-remove-btn {
+  padding: 0.5rem 1.2rem; border-radius: 8px; cursor: pointer;
+  font-size: 0.85rem; font-family: var(--sans); transition: all 0.2s; border: 1px solid;
+}
+.cover-change-btn { background: var(--accent); color: #1a0e00; border-color: var(--accent); }
+.cover-change-btn:hover { background: var(--accent2); }
+.cover-remove-btn { background: none; color: #fff; border-color: rgba(255,255,255,0.4); }
+.cover-remove-btn:hover { border-color: var(--red); color: var(--red); }
 
 .btn-add {
   display: flex; align-items: center; gap: 0.5rem; justify-content: center;

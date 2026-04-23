@@ -3,6 +3,53 @@
 let chapterCount = 0;
 let selectedStyle = 'modern';
 let selectedFontSize = 'medium';
+let coverFile = null;
+
+// --- 표지 이미지 업로드 ---
+function initCoverUpload() {
+  const area = document.getElementById('cover-upload-area');
+  const fileInput = document.getElementById('cover-file-input');
+  const placeholder = document.getElementById('cover-placeholder');
+  const previewWrap = document.getElementById('cover-preview-wrap');
+  const previewImg = document.getElementById('cover-preview-img');
+  const changeBtn = document.getElementById('cover-change-btn');
+  const removeBtn = document.getElementById('cover-remove-btn');
+
+  function setCover(file) {
+    if (!file || !file.type.startsWith('image/')) return;
+    coverFile = file;
+    const url = URL.createObjectURL(file);
+    previewImg.src = url;
+    placeholder.style.display = 'none';
+    previewWrap.style.display = 'flex';
+  }
+
+  function removeCover() {
+    coverFile = null;
+    previewImg.src = '';
+    previewWrap.style.display = 'none';
+    placeholder.style.display = 'flex';
+    fileInput.value = '';
+  }
+
+  area.addEventListener('click', e => {
+    if (e.target === removeBtn || e.target === changeBtn) return;
+    fileInput.click();
+  });
+  changeBtn.addEventListener('click', () => fileInput.click());
+  removeBtn.addEventListener('click', removeCover);
+  fileInput.addEventListener('change', () => { if (fileInput.files[0]) setCover(fileInput.files[0]); });
+
+  area.addEventListener('dragover', e => { e.preventDefault(); area.classList.add('drag-over'); });
+  area.addEventListener('dragleave', () => area.classList.remove('drag-over'));
+  area.addEventListener('drop', e => {
+    e.preventDefault();
+    area.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) setCover(file);
+  });
+}
+initCoverUpload();
 
 // --- 챕터 추가 ---
 function addChapter(title = '', content = '') {
@@ -137,7 +184,8 @@ document.getElementById('generate-btn').addEventListener('click', async () => {
       (pct, msg) => {
         progressBar.style.width = pct + '%';
         progressText.textContent = msg;
-      }
+      },
+      coverFile
     );
 
     // 다운로드

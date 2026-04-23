@@ -52,9 +52,30 @@
       </div>
     </section>
 
-    <!-- Step 2: Chapters -->
-    <section class="card" id="section-chapters">
+    <!-- Step 2: Cover Image -->
+    <section class="card" id="section-cover">
       <div class="step-label">02</div>
+      <h2>표지 이미지 <span class="optional-label">(선택)</span></h2>
+      <div class="cover-upload-area" id="cover-upload-area">
+        <input type="file" id="cover-file-input" accept="image/jpeg,image/png,image/gif,image/webp" style="display:none" />
+        <div class="cover-placeholder" id="cover-placeholder">
+          <div class="cover-placeholder-icon">🖼</div>
+          <p class="cover-placeholder-text">이미지를 클릭하거나 드래그하여 업로드</p>
+          <p class="cover-placeholder-sub">JPG, PNG, WEBP · 권장 비율 6:9</p>
+        </div>
+        <div class="cover-preview-wrap" id="cover-preview-wrap" style="display:none">
+          <img id="cover-preview-img" src="" alt="표지 미리보기" />
+          <div class="cover-overlay">
+            <button class="cover-change-btn" id="cover-change-btn">이미지 변경</button>
+            <button class="cover-remove-btn" id="cover-remove-btn">삭제</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Chapters -->
+    <section class="card" id="section-chapters">
+      <div class="step-label">03</div>
       <h2>챕터 구성</h2>
       <div id="chapters-list"></div>
       <button class="btn-add" id="add-chapter">
@@ -62,9 +83,9 @@
       </button>
     </section>
 
-    <!-- Step 3: Style -->
+    <!-- Step 4: Style -->
     <section class="card" id="section-style">
-      <div class="step-label">03</div>
+      <div class="step-label">04</div>
       <h2>스타일 설정</h2>
       <div class="style-options">
         <div class="style-card" data-style="classic" title="클래식">
